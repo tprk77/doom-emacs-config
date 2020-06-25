@@ -74,6 +74,11 @@
        :map undo-fu-mode-map
        "C-?" #'undo-fu-only-redo))
 
+;; Use function keys for common utilities
+(map! "<f1>" #'+term/toggle
+      "<f2>" #'+default/search-other-cwd
+      "<f3>" #'+default/search-project)
+
 ;; Use function keys for Magit
 (map! "<f6>" #'magit-dispatch
       "<f7>" #'magit-status
