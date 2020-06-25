@@ -53,6 +53,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Better for multi-monitor coding
+(map! "C-x o" #'next-window-any-frame
+      "C-x C-o" #'previous-window-any-frame)
+
 ;; Add alternate key for redo
 (map! (:after undo-fu
        :map undo-fu-mode-map
