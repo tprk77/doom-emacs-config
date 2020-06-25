@@ -66,6 +66,13 @@
        :map undo-fu-mode-map
        "C-?" #'undo-fu-only-redo))
 
+;; Use function keys for Magit
+(map! "<f6>" #'magit-dispatch
+      "<f7>" #'magit-status
+      "<f8>" #'magit-blame-addition
+      "<f9>" #'magit-log-current
+      "<f10>" #'magit-log-buffer-file)
+
 ;; Workaround for issue #3274
 (setq-hook! '(lsp-managed-mode-hook)
   flycheck-disabled-checkers '(c/c++-clang))
