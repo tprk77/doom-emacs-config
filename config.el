@@ -53,6 +53,11 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Add alternate key for redo
+(map! (:after undo-fu
+       :map undo-fu-mode-map
+       "C-?" #'undo-fu-only-redo))
+
 ;; Workaround for issue #3274
 (setq-hook! '(lsp-managed-mode-hook)
   flycheck-disabled-checkers '(c/c++-clang))
