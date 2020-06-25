@@ -65,3 +65,6 @@
 ;; Workaround for issue #3274
 (setq-hook! '(lsp-managed-mode-hook)
   flycheck-disabled-checkers '(c/c++-clang))
+
+;; Hook to fix C++ namespace indentation
+(add-hook! 'c++-mode-hook (c-set-offset 'innamespace 0))
