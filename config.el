@@ -61,6 +61,14 @@
 (map! [home] #'doom/backward-to-bol-or-indent
       [end] #'doom/forward-to-last-non-comment-or-eol)
 
+;; Unbind arrow keys
+(map! (:after smartparens
+       :map smartparens-mode-map
+       "C-<right>" nil
+       "M-<right>" nil
+       "C-<left>" nil
+       "M-<left>" nil))
+
 ;; Add alternate key for redo
 (map! (:after undo-fu
        :map undo-fu-mode-map
