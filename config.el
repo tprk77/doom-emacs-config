@@ -52,3 +52,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; Workaround for issue #3274
+(setq-hook! '(lsp-managed-mode-hook)
+  flycheck-disabled-checkers '(c/c++-clang))
