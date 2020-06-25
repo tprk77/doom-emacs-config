@@ -57,6 +57,10 @@
 (map! "C-x o" #'next-window-any-frame
       "C-x C-o" #'previous-window-any-frame)
 
+;; Better home and end keys
+(map! [home] #'doom/backward-to-bol-or-indent
+      [end] #'doom/forward-to-last-non-comment-or-eol)
+
 ;; Add alternate key for redo
 (map! (:after undo-fu
        :map undo-fu-mode-map
