@@ -86,6 +86,13 @@
       "<f9>" #'magit-log-current
       "<f10>" #'magit-log-buffer-file)
 
+;; Adjust Ivy completion to make more sense, see also:
+;; https://oremacs.com/2019/06/27/ivy-directory-improvements/
+(map! (:after ivy
+       :map ivy-minibuffer-map
+       "C-m" #'ivy-alt-done             ; BTW, C-m == RET
+       "C-j" #'ivy-immediate-done))
+
 ;; Workaround for issue #3274
 (setq-hook! '(lsp-managed-mode-hook)
   flycheck-disabled-checkers '(c/c++-clang))
