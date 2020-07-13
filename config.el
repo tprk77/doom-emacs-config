@@ -86,6 +86,13 @@
       "<f9>" #'magit-log-current
       "<f10>" #'magit-log-buffer-file)
 
+;; Make Eshell use up/down arrows for navigation
+(map! (:after eshell
+       :map eshell-hist-mode-map
+       "<up>" nil
+       "<down>" nil
+       "<end>" #'end-of-line))
+
 ;; Adjust Ivy completion to make more sense, see also:
 ;; https://oremacs.com/2019/06/27/ivy-directory-improvements/
 (map! (:after ivy
