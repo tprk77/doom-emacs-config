@@ -75,7 +75,7 @@
        "C-?" #'undo-fu-only-redo))
 
 ;; Use function keys for common utilities
-(map! "<f1>" #'+term/toggle
+(map! "<f1>" #'+eshell/toggle
       "<f2>" #'+default/search-other-cwd
       "<f3>" #'+default/search-project)
 
