@@ -1,0 +1,12 @@
+* Doom TODOs
+** [ ] Fix colliding key bindings, especially C-s
+The key bindings seem to be tweaked for Evil mode in particular, so they collide
+with "vanilla" Emacs key bindings. Especially really basic ones, like Isearch,
+which is not acceptable for my usage. (Too much muscle memory.)
+
+[[file:~/.emacs.d/modules/term/eshell/config.el]]
+** [ ] Fix weird bug where for some reason flyspell is highlighting "correct" words
+For example, "timezones" was getting highlighted, but Ispell was saying it was
+actually correct. It appears that "--run-together" is the cause.
+
+[[file:~/.emacs.d/modules/checkers/spell/config.el::(add-hook! 'text-mode-hook]]
