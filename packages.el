@@ -48,3 +48,9 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+(package! google-c-style
+  :recipe (:host github
+           :repo "google/styleguide"
+           :branch "gh-pages"
+           :files ("*.el")))

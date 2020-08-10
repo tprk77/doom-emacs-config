@@ -104,5 +104,6 @@
 (setq-hook! '(lsp-managed-mode-hook)
   flycheck-disabled-checkers '(c/c++-clang))
 
-;; Hook to fix C++ namespace indentation
-(add-hook! 'c++-mode-hook (c-set-offset 'innamespace 0))
+;; Use Google C++ Style by default
+(use-package! google-c-style
+  :hook (c++-mode . google-set-c-style))
