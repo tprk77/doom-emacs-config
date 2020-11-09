@@ -107,3 +107,12 @@
 ;; Use Google C++ Style by default
 (use-package! google-c-style
   :hook (c++-mode . google-set-c-style))
+
+;; Fix problems with aspell and the --run-together option. Also set the personal
+;; dictionary to the "normal" location.
+(after! ispell
+  (setq ispell-program-name "aspell"
+        ;; Notice the lack of "--run-together"
+        ispell-extra-args '("--sug-mode=ultra")
+        ispell-personal-dictionary (expand-file-name "~/.aspell.en.pws"))
+  (ispell-kill-ispell t))
