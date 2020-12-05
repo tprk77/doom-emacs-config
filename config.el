@@ -98,6 +98,8 @@
   (setq +eshell-enable-new-shell-on-split nil
         eshell-scroll-to-bottom-on-input nil
         eshell-scroll-to-bottom-on-output nil)
+  ;; Don't remove the modeline
+  (remove-hook 'eshell-mode-hook #'hide-mode-line-mode)
   ;; For some crazy reason, this needs to be done every time
   (add-hook! 'eshell-mode-hook
     (map! :map eshell-mode-map
