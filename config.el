@@ -93,7 +93,11 @@
        "C-m" #'ivy-alt-done             ; BTW, C-m == RET
        "C-j" #'ivy-immediate-done))
 
+;; Fix dumb stuff in Eshell
 (after! eshell
+  (setq +eshell-enable-new-shell-on-split nil
+        eshell-scroll-to-bottom-on-input nil
+        eshell-scroll-to-bottom-on-output nil)
   ;; For some crazy reason, this needs to be done every time
   (add-hook! 'eshell-mode-hook
     (map! :map eshell-mode-map
