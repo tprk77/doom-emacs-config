@@ -86,13 +86,6 @@
       "<f9>" #'magit-log-current
       "<f10>" #'magit-log-buffer-file)
 
-;; Make Eshell use up/down arrows for navigation
-(map! (:after eshell
-       :map eshell-hist-mode-map
-       "<up>" nil
-       "<down>" nil
-       "<end>" #'end-of-line))
-
 ;; Adjust Ivy completion to make more sense, see also:
 ;; https://oremacs.com/2019/06/27/ivy-directory-improvements/
 (map! (:after ivy
@@ -100,8 +93,21 @@
        "C-m" #'ivy-alt-done             ; BTW, C-m == RET
        "C-j" #'ivy-immediate-done))
 
+(after! eshell
+  ;; For some crazy reason, this needs to be done every time
+  (add-hook! 'eshell-mode-hook
+    (map! :map eshell-mode-map
+          "<up>" nil
+          "<down>" nil
+          "C-s" nil
+          "C-c s" nil
+          "C-c v" nil
+          "C-c x" nil
+          [remap split-window-below]  nil
+          [remap split-window-right]  nil)))
+
 ;; Workaround for issue #3274
-(setq-hook! '(lsp-managed-mode-hook)
+(setq-hook! 'lsp-managed-mode-hook
   flycheck-disabled-checkers '(c/c++-clang))
 
 ;; Use Google C++ Style by default
