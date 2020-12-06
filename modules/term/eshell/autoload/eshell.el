@@ -81,32 +81,32 @@
 
 ;;;###autoload
 (defun +eshell/toggle (arg &optional command)
-  "Toggle eshell popup window."
+  "Toggle eshell popup window. When given a prefix arg, the
+window (if any) will be closed and the buffer will be killed."
   (interactive "P")
-  (let ((eshell-buffer
-         (get-buffer-create
-          (format "*doom:eshell-popup:%s*"
-                  (if (bound-and-true-p persp-mode)
-                      (safe-persp-name (get-current-persp))
-                    "main"))))
-        confirm-kill-processes
-        current-prefix-arg)
-    (when arg
-      (when-let (win (get-buffer-window eshell-buffer))
-        (delete-window win))
-      (when (buffer-live-p eshell-buffer)
-        (with-current-buffer eshell-buffer
-          (fundamental-mode)
-          (erase-buffer))))
-    (if-let (win (get-buffer-window eshell-buffer))
+  (let* ((eshell-pop-name (format "*doom:eshell-popup:%s*"
+                                  (if (bound-and-true-p persp-mode)
+                                      (safe-persp-name (get-current-persp))
+                                    "main")))
+         (eshell-buffer (get-buffer eshell-pop-name)))
+    (if-let (win (and eshell-buffer (get-buffer-window eshell-buffer)))
         (if (eq (selected-window) win)
-            (let (confirm-kill-processes)
+            ;; Delete the window and possibly kill the buffer
+            (progn
               (delete-window win)
-              (ignore-errors (kill-buffer eshell-buffer)))
+              (when arg
+                (ignore-errors (kill-buffer eshell-buffer))))
+          ;; Select the window and go to the end
           (select-window win)
           (when (bound-and-true-p evil-local-mode)
             (evil-change-to-initial-state))
           (goto-char (point-max)))
+      ;; Pop up the buffer and possibly run a command
+      (when (and arg eshell-buffer)
+        (ignore-errors (kill-buffer eshell-buffer))
+        (setq eshell-buffer nil))
+      (when (not eshell-buffer)
+        (setq eshell-buffer (get-buffer-create eshell-pop-name)))
       (with-current-buffer (pop-to-buffer eshell-buffer)
         (doom-mark-buffer-as-real-h)
         (if (eq major-mode 'eshell-mode)
