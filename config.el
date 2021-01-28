@@ -59,7 +59,9 @@
 
 ;; Better home and end keys
 (map! [home] #'doom/backward-to-bol-or-indent
-      [end] #'doom/forward-to-last-non-comment-or-eol)
+      "C-a" #'doom/backward-to-bol-or-indent
+      [end] #'end-of-line
+      "C-e" #'end-of-line)
 
 ;; Unbind arrow keys
 (map! (:after smartparens
