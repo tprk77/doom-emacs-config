@@ -131,3 +131,6 @@
 
 ;; Disable smartparans, I find it usually more harmful than helpful
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+
+;; Don't continue comments by default (Look into binding this to a key later)
+(setq +default-want-RET-continue-comments nil)
