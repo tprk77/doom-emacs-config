@@ -128,3 +128,6 @@
         ispell-extra-args '("--sug-mode=ultra")
         ispell-personal-dictionary (expand-file-name "~/.aspell.en.pws"))
   (ispell-kill-ispell t))
+
+;; Disable smartparans, I find it usually more harmful than helpful
+(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
