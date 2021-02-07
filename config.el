@@ -136,3 +136,47 @@
 
 ;; Don't continue comments by default (Look into binding this to a key later)
 (setq +default-want-RET-continue-comments nil)
+
+;; Customize Org's TODO keywords and templates
+(after! org
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "PROG(p)" "WAIT(w)" "HOLD(h)"
+                    "|" "DONE(d)" "CANC(c)" "PROJ(j)"))
+        org-todo-keyword-faces
+        '(("PROG" . +org-todo-active)
+          ("WAIT" . +org-todo-onhold)
+          ("HOLD" . +org-todo-onhold)
+          ("PROJ" . +org-todo-project))
+        org-capture-templates
+        '(("t" "Personal TODO" entry
+           (file+headline +org-capture-todo-file "Immediate Tasks")
+           "* TODO %?" :prepend t)
+          ("n" "Personal Notes" entry
+           (file+headline +org-capture-notes-file "Captured Notes")
+           "* %?" :prepend t)
+          ;; Will use {project-root}/{todo,notes}.org, unless a
+          ;; {todo,notes,changelog}.org file is found in a parent directory.
+          ;; Uses the basename from `+org-capture-todo-file',
+          ;; `+org-capture-changelog-file' and `+org-capture-notes-file'.
+          ("p" "Templates for projects")
+          ("pt" "Project-Local TODO" entry ; {project-root}/todo.org
+           (file+headline +org-capture-project-todo-file "Immediate Tasks")
+           "* TODO %?" :prepend t)
+          ("pn" "Project-Local Notes" entry ; {project-root}/notes.org
+           (file+headline +org-capture-project-notes-file "Captured Notes")
+           "* %?" :prepend t)
+          ;; Will use {org-directory}/{+org-capture-projects-file} and store
+          ;; these under {ProjectName}/{Tasks,Notes} headings. They support
+          ;; `:parents' to specify what headings to put them under, e.g.
+          ;; :parents ("Projects")
+          ("o" "Centralized templates for projects")
+          ("ot" "Project TODO" entry
+           (function +org-capture-central-project-todo-file)
+           "* TODO %?"
+           :heading "Tasks"
+           :prepend t)
+          ("on" "Project Notes" entry
+           (function +org-capture-central-project-notes-file)
+           "* %?"
+           :heading "Notes"
+           :prepend t))))
