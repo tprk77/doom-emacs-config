@@ -60,7 +60,7 @@
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
-       snippets          ; my elves. They type so I don't have to
+       ;snippets          ; Just too much, too much
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
