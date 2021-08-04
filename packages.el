@@ -49,6 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! rg)
+
 (package! google-c-style
   :recipe (:host github
            :repo "google/styleguide"
