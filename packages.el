@@ -54,3 +54,5 @@
            :repo "google/styleguide"
            :branch "gh-pages"
            :files ("*.el")))
+
+(package! docker-tramp)
