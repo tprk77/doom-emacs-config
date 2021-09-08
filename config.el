@@ -35,6 +35,11 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
+;; Limit the minibuffer or echo area to one line. For good measure, limit Eldoc
+;; to use one line as well. Full output can be shown with `M-x eldoc'.
+(setq max-mini-window-height 1
+      eldoc-echo-area-use-multiline-p nil)
+
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
