@@ -125,7 +125,8 @@
 
 ;; Use Google C++ Style by default
 (use-package! google-c-style
-  :hook (c++-mode . google-set-c-style))
+  :hook ((c-mode . google-set-c-style)
+         (c++-mode . google-set-c-style)))
 
 ;; Fix problems with aspell and the --run-together option. Also set the personal
 ;; dictionary to the "normal" location.
