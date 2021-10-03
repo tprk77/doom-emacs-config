@@ -123,6 +123,13 @@
 (setq-hook! 'lsp-managed-mode-hook
   flycheck-disabled-checkers '(c/c++-clang))
 
+(after! eglot
+  ;; Search for clangd-12 and add it
+  (let ((clang-executable (executable-find "clangd-12")))
+    (when clang-executable
+      (add-to-list 'eglot-server-programs
+                   `((c++-mode c-mode) . (,clang-executable))))))
+
 ;; Use Google C++ Style by default
 (use-package! google-c-style
   :hook ((c-mode . google-set-c-style)
