@@ -133,7 +133,10 @@
 ;; Use Google C++ Style by default
 (use-package! google-c-style
   :hook ((c-mode . google-set-c-style)
-         (c++-mode . google-set-c-style)))
+         (c++-mode . google-set-c-style))
+  :config
+  ;; Tweak the style to not indent extern "C" blocks
+  (push '(inextern-lang . 0) (cdr (assoc 'c-offsets-alist google-c-style))))
 
 ;; Make sure *.ipp files open in C++ mode
 (add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
