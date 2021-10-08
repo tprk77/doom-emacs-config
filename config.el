@@ -135,6 +135,9 @@
   :hook ((c-mode . google-set-c-style)
          (c++-mode . google-set-c-style)))
 
+;; Make sure *.ipp files open in C++ mode
+(add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
+
 ;; Fix problems with aspell and the --run-together option. Also set the personal
 ;; dictionary to the "normal" location.
 (after! ispell
