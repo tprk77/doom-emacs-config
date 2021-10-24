@@ -125,10 +125,11 @@
 
 (after! eglot
   ;; Search for clangd-12 and add it
-  (let ((clang-executable (executable-find "clangd-12")))
-    (when clang-executable
+  (let ((clangd-executable (executable-find "clangd-12"))
+        (clangd-args '("--header-insertion=never" )))
+    (when clangd-executable
       (add-to-list 'eglot-server-programs
-                   `((c++-mode c-mode) . (,clang-executable))))))
+                   `((c++-mode c-mode) . (,clangd-executable ,@clangd-args))))))
 
 ;; Use Google C++ Style by default
 (use-package! google-c-style
