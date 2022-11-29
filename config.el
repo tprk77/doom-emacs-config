@@ -109,7 +109,7 @@
   (remove-hook 'eshell-mode-hook #'hide-mode-line-mode)
   ;; For some crazy reason, this needs to be done every time
   (add-hook! 'eshell-mode-hook
-    (map! :map eshell-mode-map
+    (map! :map (eshell-mode-map eshell-hist-mode-map)
           "<up>" nil
           "<down>" nil
           "C-s" nil
